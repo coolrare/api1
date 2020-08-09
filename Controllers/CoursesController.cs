@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace api1.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,User")]
     [Route("api/[controller]")]
     [ApiController]
     public class CoursesController : ControllerBase
