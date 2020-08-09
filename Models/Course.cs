@@ -30,9 +30,11 @@ namespace api1.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            var db = (ContosouniversityContext)validationContext.GetService(typeof(ContosouniversityContext));
+
             if (Credits >= 3 && !this.Title.Contains("優"))
             {
-                yield return new ValidationResult("評價大於 3 個課程，請在課程名稱上加入[優]字樣", new string[] { "Title" });
+                yield return new ValidationResult($"評價大於 {db.Course.Find(1).Credits} 個課程，請在課程名稱上加入[優]字樣", new string[] { "Title" });
             }
         }
     }
