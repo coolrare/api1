@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 namespace api1.Controllers
 {
     [ApiController]
+    [Produces("text/json")]
     public class MemberController : ControllerBase
     {
         private readonly JwtHelpers jwt;
@@ -26,7 +27,7 @@ namespace api1.Controllers
         {
             if (CheckUser(user.Username, user.Password))
             {
-                return jwt.GenerateToken(user.Username, expireMinutes: 15);
+                return Ok(jwt.GenerateToken(user.Username, expireMinutes: 15));
             }
             else
             {
