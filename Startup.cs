@@ -31,6 +31,15 @@ namespace api1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.Configure<AppSettings>(Configuration);
+
+            services.Configure<AppSettings>(Configuration.GetSection("MyApp"));
+
+            // services.AddSingleton(new AppSettings() {
+            //     Key1 = "1",
+            //     Key2 = "2"
+            // });
+
             // dotnet add package
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
